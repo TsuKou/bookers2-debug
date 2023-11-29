@@ -1,11 +1,13 @@
 class ApplicationController < ActionController::Base
-  before_action :authenticate_user!, except: [:top,:about]
+  # before_action :authenticate_user!,except: [:top,:about]を削除し「book,user_controller」へ記述
   before_action :configure_permitted_parameters, if: :devise_controller?
 
 
 
   def after_sign_in_path_for(resource)
-    books_path
+    user_path(resourse)
+    # 解説確認しbooks_pathからuser_path(resourse)へ修正
+
   end
 
   def after_sign_out_path_for(resource)

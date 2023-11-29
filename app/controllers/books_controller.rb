@@ -1,13 +1,15 @@
 class BooksController < ApplicationController
+  before_action :authenticate_user!
+  before_action :ensure_correct_user, only: [:edit, :update, :destroy] #解説確認前は記述必要化不明だったが、解説確認後に追加
 
   def show
-    @book_new = Book.new
+    @book_new = Book.new #自分で追記
     @book = Book.find(params[:id])
     @book_user = User.find(@book.user.id)
   end
 
   def index
-    @book = Book.new
+    @book = Book.new #追加
     @books = Book.all
   end
 
@@ -41,15 +43,23 @@ class BooksController < ApplicationController
     end
   end
 
-  def destroy
+  def destroy #deleteから変更
     @book = Book.find(params[:id])
-    @book.destroy
-    redirect_to books_path
+    @book.destroy #「r」が抜けていたため追加
+    redirect_to books_path, notice: "successfully delete book!" #解説を確認しながら「notice」を追加
   end
 
   private
 
   def book_params
-    params.require(:book).permit(:title, :body)
+    params.require(:book).permit(:title, :body) #( :body )をpermit内へ追加
   end
+
+  def ensure_correct_user #解説確認前は記述必要化不明だったが、解説確認後に追加
+    @book = Book.find(params[:id])
+    unless @book.user == current_user
+      redirect_to books_path
+    end
+  end
+
 end

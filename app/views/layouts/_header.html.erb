@@ -1,3 +1,4 @@
+<!--ヘッダーログイン/非ログイン時の「home,users,books」の頭文字大文字等を変更、課題3bookers2をサンプルと思ってないので、指定条件が記述されて無く解説確認し理解、作成者が日本人か不明だが主語を書いてください。ありえないぐらい無駄な時間が取られた-->
 <header>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
@@ -10,17 +11,17 @@
         <% if user_signed_in? %>
           <li>
             <%= link_to user_path(current_user),class: 'nav-link text-light' do %>
-              <i class="fas fa-home"></i> home
+              <i class="fas fa-home"></i> Home
             <% end %>
           </li>
           <li>
             <%=  link_to users_path,class: 'nav-link text-light' do %>
-              <i class="fas fa-users"></i> users
+              <i class="fas fa-users"></i> Users
             <% end %>
           </li>
           <li>
             <%=  link_to books_path ,class: 'nav-link text-light' do %>
-              <i class="fas fa-book-open"></i> books
+              <i class="fas fa-book-open"></i> Books
             <% end %>
           </li>
           <li>
@@ -31,12 +32,12 @@
         <% else %>
           <li>
             <%= link_to root_path,class: 'nav-link text-light' do %>
-              <i class="fas fa-home"></i> home
+              <i class="fas fa-home"></i> Home
             <% end %>
           </li>
           <li>
             <%= link_to about_path,class: 'nav-link text-light' do %>
-              <i class="fas fa-link"></i> about
+              <i class="fas fa-link"></i> About
             <% end %>
           </li>
           <li>
