@@ -1,0 +1,8 @@
+class Favorite < ApplicationRecord #応用課題3で追加
+
+  belongs_to :user
+  belongs_to :book
+
+  validates :user_id, uniqueness: {scope: :book_id} #応用課題3で追加
+
+end

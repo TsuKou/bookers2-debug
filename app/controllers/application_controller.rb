@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
 
   def after_sign_in_path_for(resource)
-    user_path(resourse)
+    user_path(current_user)
     # 解説確認しbooks_pathからuser_path(resourse)へ修正
 
   end
