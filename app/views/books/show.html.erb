@@ -3,6 +3,7 @@
     <div class='col-md-3'>
       <h2>User info</h2>
       <%= render 'users/info', user: @book_user %> <!--自分で記述　解説と記述が違うが問題なく動作してるのでOK?-->
+      <h2 class="mt-3">New book</h2>
       <%= render 'form', book: @book_new %> <!--解説では'books/formとなっているが、同ファイル上にあるためbooksは省略-->
     </div>
     <div class='col-md-8 offset-md-1'>
