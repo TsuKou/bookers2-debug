@@ -7,6 +7,13 @@ class User < ApplicationRecord
   has_many :books
   has_many :favorites, dependent: :destroy #応用課題3で追加
   has_many :book_comments, dependent: :destroy #応用課題3で追加
+
+  has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy #応用課題4で追加
+  has_many :yes_follow, through: :relationships, source: :follower
+
+  has_many :relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy #応用課題4で追加
+  has_many :no_follow, through: :relationships, source: :followed
+
   has_one_attached :profile_image
 
   validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
@@ -15,5 +22,5 @@ class User < ApplicationRecord
   def get_profile_image
     (profile_image.attached?) ? profile_image : 'no_image.jpg'
   end
+
 end
-              
