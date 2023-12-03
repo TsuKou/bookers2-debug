@@ -24,11 +24,11 @@ class User < ApplicationRecord
   end
 
   def follow(user_id) #自作メソッド
-    relationships.create(follow_id: user_id)
+    relationships.create(followed_id: user_id)
   end
 
   def unfollow(user_id) #自作メソッド
-    relationships.find_by(follow_id: user_id).destroy
+    relationships.find_by(followed_id: user_id).destroy
   end
 
   def following?(user)
