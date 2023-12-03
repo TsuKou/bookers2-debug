@@ -1,29 +1,31 @@
 class RelationshipsController < ApplicationController
-  #--ここから---フォロー作成------------
+  #--ここから----------------------------
+  #　フォローするとき
   def create
-    @user = User.find(params[:user_id])
     current_user.follow(params[:user_id])
-    @user.create_notification_follow!(current_user)
     redirect_to request.referer #操作後元画面に遷移するパス？「request.referer」
   end
   #--ここまで----------------------------
 
-  #--ここから---フォロー削除------------
+  #--ここから---------------------------
+  #　フォロー外すとき
   def destroy
     current_user.unfollow(params[:user_id])
     redirect_to request.referer
   end
   #--ここまで----------------------------
 
-  #---↓----フォロー/フォロワー一覧処理
-  def yes_follow
-    user = User.find(params{:user_id})
-    @users = user.yes_follow　#「user.yes_follow」アソシエーション部分
+  #--ここから----------------------------
+  #　フォロー一覧
+  def followings
+    user = User.find(params[:user_id])
+    @users = user.followings #「user.yes_follow」アソシエーション部分
   end
 
-  def no_follow
+  #　フォロワー一覧
+  def followers
     user = User.find(params[:user_id])
-    @users = user.no_follow
+    @users = user.followers
   end
-  #--------------ここまで--------------
+  #--ここまで-----------------------------
 end

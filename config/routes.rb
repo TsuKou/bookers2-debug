@@ -11,11 +11,9 @@ Rails.application.routes.draw do
     resource :favorite, only: [:create, :destroy]   #応用課題3で「do ~ end」まで追加
   end
   resources :users, only: [:index,:show,:edit,:update] do
-    resource :relation, only: [:create, :destroy]
-    get "yes_follow" => "relationships#yes_follow", as: "yes_follow"
-    get "no_follow" => "relatioships#no_follow", as: "no_follow"
+    resource :relationship, only: [:create, :destroy]
+    get "followings" => "relationships#followings", as: "followings"
+    get "followers" => "relatioships#followers", as: "followers"
   end
-
-
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

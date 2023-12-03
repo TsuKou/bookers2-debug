@@ -9,10 +9,10 @@ class User < ApplicationRecord
   has_many :book_comments, dependent: :destroy #応用課題3で追加
 
   has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy #応用課題4で追加
-  has_many :yes_follow, through: :relationships, source: :follower
+  has_many :reverse_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy #応用課題4で追加
 
-  has_many :relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy #応用課題4で追加
-  has_many :no_follow, through: :relationships, source: :followed
+  has_many :followings, through: :relationships, source: :followed
+  has_many :followers, through: :reverse_relationships, source: :follower
 
   has_one_attached :profile_image
 
@@ -29,6 +29,10 @@ class User < ApplicationRecord
 
   def unfollow(user_id) #自作メソッド
     relationships.find_by(follow_id: user_id).destroy
+  end
+
+  def following?(user)
+    followings.include?(user)
   end
 
 end
