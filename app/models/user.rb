@@ -8,11 +8,13 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy #応用課題3で追加
   has_many :book_comments, dependent: :destroy #応用課題3で追加
 
+  #--ここから--応用課題4---
   has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy #応用課題4で追加
   has_many :reverse_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy #応用課題4で追加
 
   has_many :followings, through: :relationships, source: :followed
   has_many :followers, through: :reverse_relationships, source: :follower
+  #--ここまで--応用課題4---
 
   has_one_attached :profile_image
 
@@ -23,16 +25,18 @@ class User < ApplicationRecord
     (profile_image.attached?) ? profile_image : 'no_image.jpg'
   end
 
-  def follow(user_id) #自作メソッド
-    relationships.create(followed_id: user_id)
+  #--ここから--応用課題4---
+  def follow(user) #自作メソッド
+    relationships.create(followed_id: user.id)
   end
 
-  def unfollow(user_id) #自作メソッド
-    relationships.find_by(followed_id: user_id).destroy
+  def unfollow(user) #自作メソッド
+    relationships.find_by(followed_id: user.id).destroy
   end
 
   def following?(user)
     followings.include?(user)
   end
+  #--ここまで--応用課題4---
 
 end
