@@ -21,6 +21,9 @@
 <div class='row'>
   <% if current_user != user %>
     <td><%= render "relationships/follow_btn", user: user, options: { class: ""} %></td>
+    <td><%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block" do %></td>
+      <i class="fas fa-user-cog"></i>
+    <% end %>
   <% else %>
     <td><%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block" do %></td>
       <i class="fas fa-user-cog"></i>
