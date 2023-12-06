@@ -38,8 +38,8 @@ class User < ApplicationRecord
     followings.include?(user)
   end
   #--ここまで--応用課題4---
-  #--ここから--応用課題5---
-  def self.looks(search,word)
+  #--ここから--応用課題5-検索方法分岐--
+  def self.looks(search, word)
     if search == "perfect_match"
       @user = User.where("name LIKE?", "#{word}")
     elsif search == "forward_match"
@@ -53,4 +53,5 @@ class User < ApplicationRecord
     end
   end
   #--ここまで--応用課題5---
+
 end
