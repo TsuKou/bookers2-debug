@@ -19,19 +19,9 @@
           </td>
           <td><%= link_to @book.title %></td>
           <td><%= @book.body %></td>
-          <% if @book.favorited_by?(current_user) %> <!--応用課題3にて追加-->
-          <td>
-            <%= link_to book_favorite_path(@book), method: :delete do %>
-              ♥<%= @book.favorites.count %>
-            <% end %>
-          </td>
-          <% else %>
-          <td>
-            <%= link_to book_favorite_path(@book), method: :post do %> <!--@bookじゃなく他インスタンス変数でコントローラでBook.allの追加が必要な可能性あり-->
-              ♡<%= @book.favorites.count %>
-            <% end %>
-          </td>
-          <% end %>
+          <!--ここまで--応用課題6で応用課題3で追加したコードを部分テンプレート化-->
+          <%= render "favorites/favorite", book: @book %>
+          <!--ここまで--応用課題6-->
           <td>
            コメント数:<%= @book.book_comments.count %>
           </td>
