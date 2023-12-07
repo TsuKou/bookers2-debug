@@ -16,11 +16,13 @@
         </td>
         <td><%= link_to book.title,book %></td>
         <td><%= book.body %></td>
-        <!--ここから--応用課題6でいいね機能部分テンプレート化して追加-->
-        <%= render "favorites/favorite", book: book %>
+        <!--ここから--応用課題6でいいね機能部分テンプレート化して追加（いいね機能ajax-partial）-->
+        <td id="favorite_btn_<%= book.id %>" >
+          <%= render "favorites/favorite_btn", book: book %>
+        </td>
         <!--ここまで--応用課題6-->
         <td>
-                    コメント数:<%= book.book_comments.count %>
+        コメント数:<%= book.book_comments.count %>
         </td>
       </tr>
     <% end %>

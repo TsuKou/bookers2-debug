@@ -20,10 +20,13 @@
           <td><%= link_to @book.title %></td>
           <td><%= @book.body %></td>
           <!--ここまで--応用課題6で応用課題3で追加したコードを部分テンプレート化-->
-          <%= render "favorites/favorite", book: @book %>
+          <td id="favorite_btn_<%= @book.id %>">
+            <%= render "favorites/favorite_btn", book: @book %>
+          </td>
           <!--ここまで--応用課題6-->
           <td>
-           コメント数:<%= @book.book_comments.count %>
+          <td id="comment_counter">
+            <%= render "book_comments/counter", book: @book %>
           </td>
           <td>
           <% if @book.user == current_user %> <!--自分で記述を編集追加-->
@@ -34,31 +37,10 @@
           </tr>
       </table>
       </div>
-      <div>
-        <table>
-          <% @book.book_comments.each do |book_comment| %>
-          <tr>
-            <td>
-              <%= link_to(book_comment.user) do %>
-                <%= image_tag book_comment.user.get_profile_image, size:"50x50" %><br> <!--コメント投稿ユーザー画像-->
-                <%= book_comment.user.name %>  <!--コメント投稿ユーザー名-->
-              <% end %>
-            </td>
-            <td><%= book_comment.comment %></td>  <!--コメント投稿ユーザーコメント-->
-            <td>
-              <% if book_comment.user == current_user %>
-                <%= link_to "Destroy",book_book_comment_path(book_comment.book,book_comment), method: :delete, class: "btn btn-sm btn-danger" %>
-              <% end %>
-            </td>
-          </tr>
-          <% end %>
-        </table>
-          <%= form_with model: [@book, @book_comment] do |f| %>
-            <div>
-              <%= f.text_area :comment, rows: '5', class: "w-100" %>
-              <%= f.submit "送信" %>
-            </div>
-          <% end %>
-    </div>
+      <div id="comment_index">
+        <%= render "book_comments/index", book: @book %>
+      </div>
+      <%= render "book_comments/form", book: @book, book_comment: @book_comment %>
+      </div>
   </div>
 </div>
