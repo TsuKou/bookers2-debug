@@ -1,1 +1,3 @@
 $("#favorite_btn_<%= @book.id %>").html("<%= j(render 'favorites/favorite_btn', book: @book) %>");
+                  <!--↑=favorite_controllerのcreateアクション内で定義されたもの-->
+                  <!--「jiファイル」に渡す変数はcreateアクション内で定義する必要がある-->

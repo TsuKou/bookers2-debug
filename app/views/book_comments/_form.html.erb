@@ -1,6 +1,8 @@
 <%= form_with model: [book, book_comment], local: false do |f| %>
-  <div>
+  <!--<div>応用課題6解説確認、div不要-->
     <%= f.text_area :comment, rows: '5', class: "w-100", id: "comment_textarea" %>
+    <!--応用課題6解説では「:comment」より後ろは「size:"90x5"」のみ記述-->
     <%= f.submit "送信" %>
-  </div>
+  <!--</div>応用課題6解説確認、div不要-->
 <% end %>
+

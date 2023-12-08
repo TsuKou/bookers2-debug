@@ -5,13 +5,14 @@ class BookCommentsController < ApplicationController
     comment = current_user.book_comments.new(book_comment_params)
     comment.book_id =@book.id
     comment.save
-    # redirect_back(fallback_location: root_path)
+    # redirect_back(fallback_location: root_path) 「jsファイル読み込ませのためコメントアウト/削除」
+
   end
 
   def destroy
      @book = Book.find(params[:book_id])
     BookComment.find(params[:id]).destroy
-    # redirect_back(fallback_location: root_path)
+    # redirect_back(fallback_location: root_path)　「jsファイル読み込ませのためコメントアウト/削除」
   end
 
   private
